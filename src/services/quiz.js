@@ -33,13 +33,19 @@ async function saveQuizAsync(quiz) {
 async function getAllQuizzesAsync() {
     const quizzes = await db.getAllQuizzes();
     const list = quizzes.map(quiz => {
+
         return {
-            id: quiz.id,
-            name: quiz.name
+        
+        id: quiz.id,
+        
+        name: quiz.name.toUpperCase()
+        
         };
-    });
-    return list;
+        
+        });
 }
+
+
 
 async function getQuizAsync(id) {
     const quiz = await db.getQuiz(id);
@@ -287,6 +293,7 @@ function start(instance) {
     });
     instance.status = 'showing-question';
 }
+
 
 function awardPoints(players, correctAnswer) {
     players.forEach(p => {
